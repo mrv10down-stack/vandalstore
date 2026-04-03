@@ -1,7 +1,7 @@
 /* ============================================
    GOOGLE FONT IMPORT
    ============================================ */
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
 /* ============================================
    GLOBAL STYLES & RESET
@@ -109,8 +109,8 @@ body {
 }
 
 .loading-logo {
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
     animation: loadingPulse 1.5s ease-in-out infinite;
     margin-bottom: 2rem;
@@ -930,73 +930,75 @@ body {
 }
 
 .logo-text {
-    background: linear-gradient(135deg, var(--blood-red-dark) 0%, var(--blood-red) 100%);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--blood-red-bright) 0%, var(--blood-red) 50%, var(--blood-red-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     transition: var(--transition);
 }
 
-.navbar-buttons {
-    display: flex;
-    gap: 0.8rem;
-    align-items: center;
+.navbar-logo:hover .logo-text {
+    background: linear-gradient(135deg, var(--blood-red-dark) 0%, var(--blood-red-bright) 50%, var(--blood-red) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: drop-shadow(0 0 8px rgba(220, 20, 60, 0.6));
 }
 
-.btn-login,
-.btn-signup {
-    padding: 0.7rem 1.8rem;
+/* ============================================
+   PAYMENT BUTTONS
+   ============================================ */
+
+.payment-buttons {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.btn-stripe {
+    flex: 1;
+    padding: 0.85rem 1.5rem;
+    background: linear-gradient(135deg, #635BFF 0%, #7B73FF 100%);
+    color: #fff;
     border: none;
     border-radius: 8px;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: var(--transition);
-    position: relative;
-    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(99, 91, 255, 0.4);
 }
 
-.btn-login {
-    background: transparent;
-    color: var(--blood-red);
-    border: 2px solid var(--blood-red);
+.btn-stripe:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 91, 255, 0.6);
 }
 
-.btn-login::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--blood-red), transparent);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.btn-login:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-.btn-login:hover {
-    color: var(--blood-red-bright);
-    border-color: var(--blood-red-bright);
-    box-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
-}
-
-.btn-signup {
-    background: linear-gradient(135deg, var(--blood-red-dark) 0%, var(--blood-red) 100%);
+.btn-crypto {
+    flex: 1;
+    padding: 0.85rem 1.5rem;
+    background: linear-gradient(135deg, #F7931A 0%, #FFB347 100%);
     color: #000;
-    box-shadow: 0 0 20px rgba(179, 0, 0, 0.6),
-                inset 0 0 10px rgba(220, 20, 60, 0.2);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(247, 147, 26, 0.4);
 }
 
-.btn-signup:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 35px rgba(220, 20, 60, 0.8),
-                inset 0 0 15px rgba(220, 20, 60, 0.3);
+.btn-crypto:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(247, 147, 26, 0.6);
 }
 
 /* ============================================
@@ -1091,11 +1093,13 @@ body {
 }
 
 .hero-title {
+    font-family: 'Orbitron', sans-serif;
     font-size: clamp(2.5rem, 10vw, 4.5rem);
     font-weight: 900;
     margin-bottom: 1.5rem;
     line-height: 1.2;
-    letter-spacing: -1px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--blood-red-bright) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1235,9 +1239,12 @@ body {
 }
 
 .products-title {
+    font-family: 'Orbitron', sans-serif;
     font-size: clamp(2rem, 6vw, 3.5rem);
     font-weight: 900;
     margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--blood-red-bright) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1505,10 +1512,13 @@ body {
 }
 
 .features-title {
+    font-family: 'Orbitron', sans-serif;
     font-size: clamp(2rem, 6vw, 3.5rem);
     font-weight: 900;
     margin-bottom: 4rem;
     text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--blood-red-bright) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1649,16 +1659,6 @@ body {
         gap: 0.5rem;
     }
 
-    .navbar-buttons {
-        gap: 0.5rem;
-    }
-
-    .btn-login,
-    .btn-signup {
-        padding: 0.5rem 1.2rem;
-        font-size: 0.8rem;
-    }
-
     .theme-toggle,
     .cart-btn {
         width: 38px;
@@ -1745,16 +1745,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    .navbar-buttons {
-        gap: 0.3rem;
-    }
-
-    .btn-login,
-    .btn-signup {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.7rem;
-    }
-
     .hero-title {
         font-size: 1.5rem;
     }
@@ -1809,6 +1799,10 @@ body {
         height: 42px;
         bottom: 20px;
         right: 20px;
+    }
+
+    .payment-buttons {
+        flex-direction: column;
     }
 }
 
@@ -1902,8 +1896,11 @@ a.product-card {
 }
 
 .product-page-header h1 {
+    font-family: 'Orbitron', sans-serif;
     font-size: clamp(2rem, 6vw, 3.5rem);
     font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--blood-red-bright) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vandal Store - Premium Gaming Enhancements</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icon/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="images/icon/favicon.ico">
+    <link rel="manifest" href="images/icon/site.webmanifest">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,10 +22,10 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="navbar-logo">
-                <span class="logo-icon">V</span>
+            <a href="index.html" class="navbar-logo">
+                <img src="images/logo.png" alt="Vandal Store" class="logo-img">
                 <span class="logo-text">Vandal Store</span>
-            </div>
+            </a>
             <div class="navbar-buttons">
                 <button class="btn-login">Login</button>
                 <button class="btn-signup">Sign Up</button>
@@ -37,133 +42,78 @@
         </div>
 
         <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="title-word">Welcome</span>
-                <span class="title-word">to</span>
-                <span class="title-word">Vandal</span>
-                <span class="title-word highlight">Store</span>
-            </h1>
+            <img src="images/logo.png" alt="Vandal Store" class="hero-logo">
+            <h1 class="hero-title">Products</h1>
             <p class="hero-subtitle">Premium gaming enhancements. Undetected. Instant delivery.</p>
-            <div class="hero-buttons">
-                <button class="btn-primary">
-                    <span class="btn-text">Browse Products</span>
-                    <span class="btn-glow"></span>
-                </button>
-                <button class="btn-secondary">
-                    <span class="btn-text">Go to Your Keys</span>
-                    <span class="btn-glow"></span>
-                </button>
-            </div>
         </div>
     </section>
 
     <!-- Products Section -->
-    <section class="products">
+    <section class="products" id="products">
         <div class="section-header">
-            <h2 class="products-title">Premium Products</h2>
+            <h2 class="products-title">Our Products</h2>
             <p class="section-subtitle">Carefully curated enhancements for serious gamers</p>
         </div>
 
         <div class="products-grid">
-            <!-- Product Card 1 -->
-            <div class="product-card" data-aos="fade-up">
+            <!-- Product Card: Rust -->
+            <a href="rust.html" class="product-card" data-aos="fade-up">
                 <div class="product-image-wrapper">
                     <div class="product-image">
-                        <div class="image-placeholder">
-                            <span class="game-icon">⚔️</span>
-                        </div>
+                        <img src="images/Rust/20260227193435-c95c984f6071.jpeg" alt="Rust" class="product-img">
                         <div class="shimmer-effect"></div>
                     </div>
                     <span class="stock-badge">In Stock</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Rust External</h3>
+                    <h3 class="product-name">Rust</h3>
                     <p class="product-description">Undetected • Instant Delivery</p>
                     <div class="product-footer">
-                        <span class="product-price">$29.99</span>
-                        <button class="btn-arrow" aria-label="View product">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"></path>
-                            </svg>
-                        </button>
+                        <span class="product-price">From €7.99</span>
+                        <span class="btn-view">View Product</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <!-- Product Card 2 -->
-            <div class="product-card" data-aos="fade-up">
+            <!-- Product Card: Arc Raiders -->
+            <a href="arcraiders.html" class="product-card" data-aos="fade-up">
                 <div class="product-image-wrapper">
                     <div class="product-image">
-                        <div class="image-placeholder">
-                            <span class="game-icon">🔒</span>
-                        </div>
+                        <img src="images/Arc Raiders/4sHMWmw.jpeg" alt="Arc Raiders" class="product-img">
                         <div class="shimmer-effect"></div>
                     </div>
                     <span class="stock-badge">In Stock</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Rust Internal (Safest)</h3>
+                    <h3 class="product-name">Arc Raiders</h3>
                     <p class="product-description">Undetected • Instant Delivery</p>
                     <div class="product-footer">
-                        <span class="product-price">$39.99</span>
-                        <button class="btn-arrow" aria-label="View product">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"></path>
-                            </svg>
-                        </button>
+                        <span class="product-price">From €5.99</span>
+                        <span class="btn-view">View Product</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <!-- Product Card 3 -->
-            <div class="product-card" data-aos="fade-up">
+            <!-- Product Card: Discord -->
+            <a href="discord.html" class="product-card" data-aos="fade-up">
                 <div class="product-image-wrapper">
                     <div class="product-image">
                         <div class="image-placeholder">
-                            <span class="game-icon">🎯</span>
+                            <span class="game-icon">💬</span>
                         </div>
                         <div class="shimmer-effect"></div>
                     </div>
                     <span class="stock-badge">In Stock</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Arc Raiders External</h3>
-                    <p class="product-description">Undetected • Instant Delivery</p>
+                    <h3 class="product-name">Discord Services</h3>
+                    <p class="product-description">Server Boosting • Members</p>
                     <div class="product-footer">
-                        <span class="product-price">$24.99</span>
-                        <button class="btn-arrow" aria-label="View product">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"></path>
-                            </svg>
-                        </button>
+                        <span class="product-price">From €3.00</span>
+                        <span class="btn-view">View Product</span>
                     </div>
                 </div>
-            </div>
-
-            <!-- Product Card 4 -->
-            <div class="product-card" data-aos="fade-up">
-                <div class="product-image-wrapper">
-                    <div class="product-image">
-                        <div class="image-placeholder">
-                            <span class="game-icon">👑</span>
-                        </div>
-                        <div class="shimmer-effect"></div>
-                    </div>
-                    <span class="stock-badge">In Stock</span>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Apex Internal</h3>
-                    <p class="product-description">Undetected • Instant Delivery</p>
-                    <div class="product-footer">
-                        <span class="product-price">$34.99</span>
-                        <button class="btn-arrow" aria-label="View product">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17L17 7M17 7H7M17 7V17"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            </a>
         </div>
     </section>
 

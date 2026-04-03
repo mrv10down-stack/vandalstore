@@ -25,60 +25,112 @@ window.addEventListener('scroll', () => {
 // NAVBAR BUTTON INTERACTIONS
 // ============================================
 
-document.querySelector('.btn-login').addEventListener('click', () => {
-    console.log('🔐 Login button clicked');
-    showNotification('Login feature coming soon!');
-});
+const loginBtn = document.querySelector('.btn-login');
+const signupBtn = document.querySelector('.btn-signup');
 
-document.querySelector('.btn-signup').addEventListener('click', () => {
-    console.log('✨ Sign Up button clicked');
-    showNotification('Sign Up feature coming soon!');
-});
-
-// ============================================
-// HERO SECTION INTERACTIONS
-// ============================================
-
-document.querySelector('.btn-primary').addEventListener('click', () => {
-    console.log('🛍️ Browse Products clicked');
-    document.querySelector('.products').scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+        showNotification('Login feature coming soon!');
     });
-});
+}
 
-document.querySelector('.btn-secondary').addEventListener('click', () => {
-    console.log('🔑 Go to Your Keys clicked');
-    showNotification('Your Keys dashboard is loading...');
+if (signupBtn) {
+    signupBtn.addEventListener('click', () => {
+        showNotification('Sign Up feature coming soon!');
+    });
+}
+
+// ============================================
+// HERO SECTION INTERACTIONS (Homepage only)
+// ============================================
+
+const browsBtn = document.querySelector('.btn-primary');
+if (browsBtn) {
+    browsBtn.addEventListener('click', () => {
+        document.querySelector('.products').scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+}
+
+const keysBtn = document.querySelector('.btn-secondary');
+if (keysBtn) {
+    keysBtn.addEventListener('click', () => {
+        showNotification('Your Keys dashboard is loading...');
+    });
+}
+
+// ============================================
+// IMAGE SLIDER
+// ============================================
+
+document.querySelectorAll('[data-slider]').forEach((slider) => {
+    const track = slider.querySelector('.slider-track');
+    const slides = slider.querySelectorAll('.slider-slide');
+    const prevBtn = slider.querySelector('[data-slider-prev]');
+    const nextBtn = slider.querySelector('[data-slider-next]');
+    const dotsContainer = slider.querySelector('.slider-dots');
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    // Hide controls if only one slide
+    if (totalSlides <= 1) {
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (dotsContainer) dotsContainer.style.display = 'none';
+    }
+
+    // Create dots
+    if (dotsContainer && totalSlides > 1) {
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('span');
+            dot.classList.add('slider-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateDots();
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        const dots = dotsContainer.querySelectorAll('.slider-dot');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            goToSlide(currentIndex);
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            goToSlide(currentIndex);
+        });
+    }
 });
 
 // ============================================
-// PRODUCT CARD INTERACTIONS
+// PURCHASE BUTTON INTERACTIONS
 // ============================================
 
-const productArrowButtons = document.querySelectorAll('.btn-arrow');
-
-productArrowButtons.forEach((btn, index) => {
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const card = btn.closest('.product-card');
-        const productName = card.querySelector('.product-name').textContent;
-        const productPrice = card.querySelector('.product-price').textContent;
-        
-        console.log(`🛒 Added to cart: ${productName} - ${productPrice}`);
-        
-        // Visual feedback animation
-        btn.style.animation = 'none';
-        setTimeout(() => {
-            btn.style.animation = '';
-        }, 10);
-        
-        // Pulse effect
-        const originalTransform = btn.style.transform;
-        btn.style.transform = 'scale(1.2)';
-        setTimeout(() => {
-            btn.style.transform = originalTransform;
-        }, 300);
+document.querySelectorAll('.btn-buy').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const card = btn.closest('.price-card');
+        const duration = card.querySelector('.duration').textContent;
+        const price = card.querySelector('.price').textContent;
+        showNotification(`Purchase for ${duration} (${price}) coming soon!`);
     });
 });
 
@@ -94,7 +146,6 @@ const observerOptions = {
 const observerCallback = (entries) => {
     entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            // Stagger animation
             setTimeout(() => {
                 entry.target.classList.add('aos-animate');
             }, index * 100);
@@ -105,7 +156,6 @@ const observerCallback = (entries) => {
 
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-// Observe all elements with data-aos attribute
 document.querySelectorAll('[data-aos]').forEach((element) => {
     observer.observe(element);
 });
@@ -117,8 +167,12 @@ document.querySelectorAll('[data-aos]').forEach((element) => {
 const productCards = document.querySelectorAll('.product-card');
 
 productCards.forEach((card) => {
-    card.addEventListener('mouseenter', () => {
-        console.log(`👁️ Viewing: ${card.querySelector('.product-name').textContent}`);
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', x + 'px');
+        card.style.setProperty('--mouse-y', y + 'px');
     });
 });
 
@@ -133,25 +187,9 @@ document.querySelectorAll('button').forEach((button) => {
         const size = Math.max(rect.width, rect.height);
         const x = e.clientX - rect.left - size / 2;
         const y = e.clientY - rect.top - size / 2;
-
         ripple.style.width = ripple.style.height = size + 'px';
         ripple.style.left = x + 'px';
         ripple.style.top = y + 'px';
-    });
-});
-
-// ============================================
-// SMOOTH HOVER EFFECTS FOR CARDS
-// ============================================
-
-productCards.forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        card.style.setProperty('--mouse-x', x + 'px');
-        card.style.setProperty('--mouse-y', y + 'px');
     });
 });
 
@@ -180,79 +218,28 @@ function showNotification(message) {
     notification.textContent = message;
     document.body.appendChild(notification);
     
-    // Add animation keyframes if not already present
     if (!document.querySelector('style[data-notification]')) {
         const style = document.createElement('style');
         style.setAttribute('data-notification', 'true');
         style.textContent = `
             @keyframes slideInRight {
-                from {
-                    opacity: 0;
-                    transform: translateX(100px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
+                from { opacity: 0; transform: translateX(100px); }
+                to { opacity: 1; transform: translateX(0); }
             }
             @keyframes slideOutRight {
-                from {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-                to {
-                    opacity: 0;
-                    transform: translateX(100px);
-                }
+                from { opacity: 1; transform: translateX(0); }
+                to { opacity: 0; transform: translateX(100px); }
             }
         `;
         document.head.appendChild(style);
     }
     
-    // Remove after 3 seconds with animation
     setTimeout(() => {
         notification.style.animation = 'slideOutRight 0.4s ease-out';
         setTimeout(() => {
             notification.remove();
         }, 400);
     }, 3000);
-}
-
-// ============================================
-// PERFORMANCE MONITORING
-// ============================================
-
-window.addEventListener('load', () => {
-    console.log('%c🎮 VANDAL STORE LOADED', 'color: #B30000; font-size: 18px; font-weight: bold; text-shadow: 0 0 10px rgba(179,0,0,0.8)');
-    console.log('%cPremium gaming enhancements. Undetected. Instant delivery.', 'color: #DC143C; font-size: 13px; font-weight: 600');
-    console.log('%c⚡ Performance: All systems operational', 'color: #8B0000; font-size: 12px');
-});
-
-// ============================================
-// TOUCH SUPPORT FOR MOBILE
-// ============================================
-
-if (window.innerWidth <= 768) {
-    document.querySelectorAll('button').forEach((btn) => {
-        btn.addEventListener('touchstart', function() {
-            this.style.opacity = '0.8';
-        });
-        
-        btn.addEventListener('touchend', function() {
-            this.style.opacity = '1';
-        });
-    });
-
-    // Enhanced touch feedback for product cards
-    productCards.forEach((card) => {
-        card.addEventListener('touchstart', function() {
-            this.style.transform = 'scale(0.98)';
-        });
-        
-        card.addEventListener('touchend', function() {
-            this.style.transform = '';
-        });
-    });
 }
 
 // ============================================
@@ -275,7 +262,6 @@ window.addEventListener('scroll', () => {
 window.addEventListener('resize', () => {
     const isMobile = window.innerWidth <= 768;
     
-    // Disable parallax on mobile
     if (isMobile) {
         const hero = document.querySelector('.hero-glow-bg');
         if (hero) {
@@ -285,19 +271,47 @@ window.addEventListener('resize', () => {
 });
 
 // ============================================
+// TOUCH SUPPORT FOR MOBILE
+// ============================================
+
+if (window.innerWidth <= 768) {
+    document.querySelectorAll('button').forEach((btn) => {
+        btn.addEventListener('touchstart', function() {
+            this.style.opacity = '0.8';
+        });
+        btn.addEventListener('touchend', function() {
+            this.style.opacity = '1';
+        });
+    });
+
+    productCards.forEach((card) => {
+        card.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.98)';
+        });
+        card.addEventListener('touchend', function() {
+            this.style.transform = '';
+        });
+    });
+}
+
+// ============================================
 // KEYBOARD NAVIGATION SUPPORT
 // ============================================
 
 document.addEventListener('keydown', (e) => {
-    // Skip to products section with 'P' key
-    if (e.key.toLowerCase() === 'p') {
-        document.querySelector('.products').scrollIntoView({ behavior: 'smooth' });
-    }
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     
-    // Skip to top with 'Home' key
     if (e.key === 'Home') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+});
+
+// ============================================
+// PAGE LOAD
+// ============================================
+
+window.addEventListener('load', () => {
+    console.log('%c🎮 VANDAL STORE LOADED', 'color: #B30000; font-size: 18px; font-weight: bold;');
 });
 
 // ============================================

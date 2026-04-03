@@ -54,7 +54,7 @@
                 <span>Total</span>
                 <span id="cartTotal">€0.00</span>
             </div>
-            <button class="cart-checkout-btn" id="checkoutBtn">Checkout with Stripe</button>
+            <button class="cart-checkout-btn" id="checkoutBtn">Checkout with Sellix</button>
             <button class="cart-crypto-btn" id="cryptoBtn">₿ Pay with Crypto</button>
         </div>
     </div>
@@ -77,6 +77,10 @@
                     <span class="cart-badge empty" id="cartBadge">0</span>
                 </button>
                 <button class="theme-toggle" id="themeToggle">🌙</button>
+                <div class="navbar-buttons">
+                    <button class="btn-login">Login</button>
+                    <button class="btn-signup">Sign Up</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -97,19 +101,13 @@
                 <span class="price-badge popular">Most Popular</span>
                 <div class="duration">1k Online Members</div>
                 <div class="price">€7.00</div>
-                <div class="payment-buttons">
-                    <button class="btn-stripe" onclick="buyStripe('Discord Online Members - 1k', 7.00)">Buy with Card</button>
-                    <button class="btn-crypto" onclick="buyCrypto('Discord Online Members - 1k', 7.00)">₿ Pay with Crypto</button>
-                </div>
+                <button class="btn-buy" data-product="Discord Online Members" data-duration="1k Members" data-price="7.00">Add to Cart</button>
             </div>
             <div class="price-card highlighted">
                 <span class="price-badge best-value">Best Value</span>
                 <div class="duration">1k Offline Members</div>
                 <div class="price">€3.00</div>
-                <div class="payment-buttons">
-                    <button class="btn-stripe" onclick="buyStripe('Discord Offline Members - 1k', 3.00)">Buy with Card</button>
-                    <button class="btn-crypto" onclick="buyCrypto('Discord Offline Members - 1k', 3.00)">₿ Pay with Crypto</button>
-                </div>
+                <button class="btn-buy" data-product="Discord Offline Members" data-duration="1k Members" data-price="3.00">Add to Cart</button>
             </div>
         </div>
 
@@ -166,7 +164,6 @@
     <!-- Scroll to Top -->
     <button class="scroll-top-btn" id="scrollTopBtn">↑</button>
 
-    <script src="https://js.stripe.com/v3/"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -54,7 +54,7 @@
                 <span>Total</span>
                 <span id="cartTotal">€0.00</span>
             </div>
-            <button class="cart-checkout-btn" id="checkoutBtn">Checkout with Stripe</button>
+            <button class="cart-checkout-btn" id="checkoutBtn">Checkout with Sellix</button>
             <button class="cart-crypto-btn" id="cryptoBtn">₿ Pay with Crypto</button>
         </div>
     </div>
@@ -77,6 +77,10 @@
                     <span class="cart-badge empty" id="cartBadge">0</span>
                 </button>
                 <button class="theme-toggle" id="themeToggle">🌙</button>
+                <div class="navbar-buttons">
+                    <button class="btn-login">Login</button>
+                    <button class="btn-signup">Sign Up</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -107,36 +111,24 @@
             <div class="price-card">
                 <div class="duration">1 Day</div>
                 <div class="price">€5.99</div>
-                <div class="payment-buttons">
-                    <button class="btn-stripe" onclick="buyStripe('Arc Raiders - 1 Day', 5.99)">Buy with Card</button>
-                    <button class="btn-crypto" onclick="buyCrypto('Arc Raiders - 1 Day', 5.99)">₿ Pay with Crypto</button>
-                </div>
+                <button class="btn-buy" data-product="Arc Raiders" data-duration="1 Day" data-price="5.99">Add to Cart</button>
             </div>
             <div class="price-card highlighted">
                 <span class="price-badge popular">Most Popular</span>
                 <div class="duration">3 Days</div>
                 <div class="price">€14.99</div>
-                <div class="payment-buttons">
-                    <button class="btn-stripe" onclick="buyStripe('Arc Raiders - 3 Days', 14.99)">Buy with Card</button>
-                    <button class="btn-crypto" onclick="buyCrypto('Arc Raiders - 3 Days', 14.99)">₿ Pay with Crypto</button>
-                </div>
+                <button class="btn-buy" data-product="Arc Raiders" data-duration="3 Days" data-price="14.99">Add to Cart</button>
             </div>
             <div class="price-card">
                 <div class="duration">1 Week</div>
                 <div class="price">€24.99</div>
-                <div class="payment-buttons">
-                    <button class="btn-stripe" onclick="buyStripe('Arc Raiders - 1 Week', 24.99)">Buy with Card</button>
-                    <button class="btn-crypto" onclick="buyCrypto('Arc Raiders - 1 Week', 24.99)">₿ Pay with Crypto</button>
-                </div>
+                <button class="btn-buy" data-product="Arc Raiders" data-duration="1 Week" data-price="24.99">Add to Cart</button>
             </div>
             <div class="price-card highlighted">
                 <span class="price-badge best-value">Best Value</span>
                 <div class="duration">1 Month</div>
                 <div class="price">€49.99</div>
-                <div class="payment-buttons">
-                    <button class="btn-stripe" onclick="buyStripe('Arc Raiders - 1 Month', 49.99)">Buy with Card</button>
-                    <button class="btn-crypto" onclick="buyCrypto('Arc Raiders - 1 Month', 49.99)">₿ Pay with Crypto</button>
-                </div>
+                <button class="btn-buy" data-product="Arc Raiders" data-duration="1 Month" data-price="49.99">Add to Cart</button>
             </div>
         </div>
 
@@ -318,7 +310,6 @@
     <!-- Scroll to Top -->
     <button class="scroll-top-btn" id="scrollTopBtn">↑</button>
 
-    <script src="https://js.stripe.com/v3/"></script>
     <script src="script.js"></script>
 </body>
 </html>

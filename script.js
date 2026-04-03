@@ -10,53 +10,6 @@ const PROMO_CODES = {
 };
 
 // ============================================
-// STRIPE + CRYPTO PAYMENTS
-// ============================================
-
-const stripePublicKey = 'pk_test_YOUR_STRIPE_PUBLISHABLE_KEY_HERE';
-const stripeInstance = typeof Stripe !== 'undefined' ? Stripe(stripePublicKey) : null;
-
-async function buyStripe(product, price) {
-    try {
-        showNotification('Redirecting to Stripe checkout...');
-        const res = await fetch('/create-checkout-session', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ product, price }),
-        });
-        const data = await res.json();
-        if (data.id && stripeInstance) {
-            await stripeInstance.redirectToCheckout({ sessionId: data.id });
-        } else if (data.error) {
-            showNotification('Payment error: ' + data.error);
-        }
-    } catch (err) {
-        showNotification('Payment failed. Please try again.');
-        console.error('Stripe error:', err);
-    }
-}
-
-async function buyCrypto(product, price) {
-    try {
-        showNotification('Creating crypto payment...');
-        const res = await fetch('/create-crypto-charge', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ product, price }),
-        });
-        const data = await res.json();
-        if (data.url) {
-            window.location.href = data.url;
-        } else if (data.error) {
-            showNotification('Crypto error: ' + data.error);
-        }
-    } catch (err) {
-        showNotification('Crypto payment failed. Please try again.');
-        console.error('Coinbase error:', err);
-    }
-}
-
-// ============================================
 // LOADING SCREEN
 // ============================================
 
@@ -184,6 +137,25 @@ document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
     }
 });
+
+// ============================================
+// NAVBAR BUTTON INTERACTIONS
+// ============================================
+
+const loginBtn = document.querySelector('.btn-login');
+const signupBtn = document.querySelector('.btn-signup');
+
+if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+        showNotification('Login feature coming soon!');
+    });
+}
+
+if (signupBtn) {
+    signupBtn.addEventListener('click', () => {
+        showNotification('Sign Up feature coming soon!');
+    });
+}
 
 // ============================================
 // SHOPPING CART SYSTEM

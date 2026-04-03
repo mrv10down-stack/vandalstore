@@ -12,11 +12,51 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <img src="images/logo.png" alt="Loading" class="loading-logo">
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Cursor Trail -->
+    <div class="cursor-dot" id="cursorDot"></div>
+
     <!-- Animated Background -->
     <div class="animated-background">
         <div class="blood-flow-1"></div>
         <div class="blood-flow-2"></div>
         <div class="blood-flow-3"></div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Your Cart</h3>
+            <button class="cart-close" id="cartClose">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">Your cart is empty</div>
+        </div>
+        <div class="cart-promo">
+            <div class="promo-input-group">
+                <input type="text" placeholder="Promo code" id="promoInput" maxlength="20">
+                <button id="promoApply">Apply</button>
+            </div>
+            <div class="promo-msg" id="promoMsg"></div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">€0.00</span>
+            </div>
+            <button class="cart-checkout-btn" id="checkoutBtn">Checkout with Sellix</button>
+            <button class="cart-crypto-btn" id="cryptoBtn">₿ Pay with Crypto</button>
+        </div>
     </div>
 
     <!-- Navigation Bar -->
@@ -26,15 +66,27 @@
                 <img src="images/logo.png" alt="Vandal Store" class="logo-img">
                 <span class="logo-text">Vandal Store</span>
             </a>
-            <div class="navbar-buttons">
-                <button class="btn-login">Login</button>
-                <button class="btn-signup">Sign Up</button>
+            <div class="navbar-links">
+                <a href="index.html" class="nav-link">Products</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="status.html" class="nav-link">Status</a>
+            </div>
+            <div class="navbar-right">
+                <button class="cart-btn" id="cartBtn">
+                    🛒
+                    <span class="cart-badge empty" id="cartBadge">0</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <div class="navbar-buttons">
+                    <button class="btn-login">Login</button>
+                    <button class="btn-signup">Sign Up</button>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Product Page -->
-    <div class="product-page">
+    <div class="product-page page-transition">
         <a href="index.html" class="back-btn">← Back to Products</a>
 
         <!-- Header -->
@@ -43,27 +95,40 @@
             <span class="status-badge">Steam proof and undetected</span>
         </div>
 
+        <!-- Countdown Timer -->
+        <div class="countdown-banner">
+            <span class="countdown-label">🔥 Limited Time Deal</span>
+            <div class="countdown-timer" id="countdownTimer">
+                <div class="countdown-unit"><span class="number" id="cdDays">00</span><span class="label">Days</span></div>
+                <div class="countdown-unit"><span class="number" id="cdHours">00</span><span class="label">Hours</span></div>
+                <div class="countdown-unit"><span class="number" id="cdMins">00</span><span class="label">Mins</span></div>
+                <div class="countdown-unit"><span class="number" id="cdSecs">00</span><span class="label">Secs</span></div>
+            </div>
+        </div>
+
         <!-- Pricing -->
         <div class="pricing-grid">
             <div class="price-card">
                 <div class="duration">1 Day</div>
                 <div class="price">€7.99</div>
-                <button class="btn-buy">Purchase</button>
+                <button class="btn-buy" data-product="Rust" data-duration="1 Day" data-price="7.99">Add to Cart</button>
             </div>
-            <div class="price-card">
+            <div class="price-card highlighted">
+                <span class="price-badge popular">Most Popular</span>
                 <div class="duration">3 Days</div>
                 <div class="price">€12.99</div>
-                <button class="btn-buy">Purchase</button>
+                <button class="btn-buy" data-product="Rust" data-duration="3 Days" data-price="12.99">Add to Cart</button>
             </div>
             <div class="price-card">
                 <div class="duration">1 Week</div>
                 <div class="price">€29.99</div>
-                <button class="btn-buy">Purchase</button>
+                <button class="btn-buy" data-product="Rust" data-duration="1 Week" data-price="29.99">Add to Cart</button>
             </div>
-            <div class="price-card">
+            <div class="price-card highlighted">
+                <span class="price-badge best-value">Best Value</span>
                 <div class="duration">1 Month</div>
                 <div class="price">€59.99</div>
-                <button class="btn-buy">Purchase</button>
+                <button class="btn-buy" data-product="Rust" data-duration="1 Month" data-price="59.99">Add to Cart</button>
             </div>
         </div>
 
@@ -77,108 +142,158 @@
             <div class="slider-dots"></div>
         </div>
 
-        <!-- Feature Categories -->
-        <div class="product-features">
-            <div class="feature-categories">
-                <div class="feature-category">
-                    <h3>Combat & Aim Assistance</h3>
-                    <p class="cat-desc">Enhances combat effectiveness through improved targeting.</p>
-                    <ul>
+        <!-- Tabs -->
+        <div class="tabs-container">
+            <div class="tabs-nav">
+                <button class="tab-btn active" data-tab="overview">Overview</button>
+                <button class="tab-btn" data-tab="features">Features</button>
+                <button class="tab-btn" data-tab="compatibility">Compatibility</button>
+            </div>
+
+            <!-- Tab: Overview -->
+            <div class="tab-content active" id="tab-overview">
+                <!-- Feature Categories -->
+                <div class="product-features">
+                    <div class="feature-categories">
+                        <div class="feature-category">
+                            <h3>Combat & Aim Assistance</h3>
+                            <p class="cat-desc">Enhances combat effectiveness through improved targeting.</p>
+                            <ul>
+                                <li>Bone Selection</li>
+                                <li>Prediction System</li>
+                                <li>Silent Aim</li>
+                                <li>Recoil Control</li>
+                                <li>No Sway</li>
+                            </ul>
+                        </div>
+                        <div class="feature-category">
+                            <h3>Visual & Positional Awareness</h3>
+                            <p class="cat-desc">Provides comprehensive on-screen information.</p>
+                            <ul>
+                                <li>Player ESP</li>
+                                <li>Chams</li>
+                                <li>Skeletons</li>
+                                <li>Radar</li>
+                                <li>Player Hotbar</li>
+                            </ul>
+                        </div>
+                        <div class="feature-category">
+                            <h3>Movement & Core Utilities</h3>
+                            <p class="cat-desc">Advanced movement and essential background tools.</p>
+                            <ul>
+                                <li>Infinite Jump</li>
+                                <li>Spiderman</li>
+                                <li>Flyhack</li>
+                                <li>No Fall Damage</li>
+                                <li>Suicide</li>
+                            </ul>
+                        </div>
+                        <div class="feature-category">
+                            <h3>Looting & Customization</h3>
+                            <p class="cat-desc">Streamlines item management and personalization.</p>
+                            <ul>
+                                <li>Smart Loot System</li>
+                                <li>Rarity Filters</li>
+                                <li>Render Distance</li>
+                                <li>OOF Indicator</li>
+                                <li>Configs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ultimate Section -->
+                <div class="ultimate-section">
+                    <h2>The Ultimate Gaming Tool</h2>
+                    <p>Dominate your game with the ultimate tool for competitive players. Gain an unfair advantage with precision aim, unparalleled awareness, and advanced movement capabilities that will leave your opponents in awe. This is your key to victory.</p>
+                </div>
+            </div>
+
+            <!-- Tab: Features -->
+            <div class="tab-content" id="tab-features">
+                <div class="detail-block">
+                    <h3>Aimbot</h3>
+                    <p class="block-desc">Lock onto targets with lethal accuracy. Our aimbot gives you the edge to hit every shot.</p>
+                    <ul class="feature-list">
                         <li>Bone Selection</li>
-                        <li>Prediction System</li>
-                        <li>Silent Aim</li>
+                        <li>Adjustable FOV</li>
                         <li>Recoil Control</li>
-                        <li>No Sway</li>
+                        <li>Silent Aim</li>
+                        <li>Smoothing</li>
+                        <li>Thick Bullet</li>
+                        <li>Instant Eoka</li>
+                        <li>Full Auto</li>
+                        <li>Spread Control</li>
+                        <li>Hit Chance</li>
                     </ul>
                 </div>
-                <div class="feature-category">
-                    <h3>Visual & Positional Awareness</h3>
-                    <p class="cat-desc">Provides comprehensive on-screen information.</p>
-                    <ul>
-                        <li>Player ESP</li>
-                        <li>Chams</li>
-                        <li>Skeletons</li>
+
+                <div class="detail-block">
+                    <h3>ESP & Wallhack Features</h3>
+                    <p class="block-desc">Transform your perception of the game with our state-of-the-art ESP. Track enemy movements, identify critical loot, and anticipate every threat.</p>
+                    <ul class="feature-list">
+                        <li>Player NameTag</li>
+                        <li>Box (Corner)</li>
+                        <li>Skeleton</li>
+                        <li>Team ID</li>
+                        <li>Distance</li>
+                        <li>Show Dead</li>
+                        <li>Show Sleepers</li>
                         <li>Radar</li>
-                        <li>Player Hotbar</li>
+                        <li>Hotbar ESP</li>
+                        <li>Chams</li>
                     </ul>
                 </div>
-                <div class="feature-category">
-                    <h3>Movement & Core Utilities</h3>
-                    <p class="cat-desc">Advanced movement and essential background tools.</p>
-                    <ul>
-                        <li>Infinite Jump</li>
-                        <li>Spiderman</li>
-                        <li>Flyhack</li>
-                        <li>No Fall Damage</li>
-                        <li>Suicide</li>
-                    </ul>
-                </div>
-                <div class="feature-category">
-                    <h3>Looting & Customization</h3>
-                    <p class="cat-desc">Streamlines item management and personalization.</p>
-                    <ul>
-                        <li>Smart Loot System</li>
-                        <li>Rarity Filters</li>
-                        <li>Render Distance</li>
-                        <li>OOF Indicator</li>
-                        <li>Configs</li>
+
+                <div class="detail-block">
+                    <h3>Loot ESP</h3>
+                    <p class="block-desc">Stop wasting precious time searching aimlessly for loot. Our Loot ESP highlights exactly what you need.</p>
+                    <ul class="feature-list">
+                        <li>Ore ESP</li>
+                        <li>Collectable ESP</li>
+                        <li>Vehicle ESP</li>
+                        <li>Lootable ESP</li>
+                        <li>Trap ESP</li>
+                        <li>Deployable Esp</li>
                     </ul>
                 </div>
             </div>
-        </div>
 
-        <!-- Ultimate Section -->
-        <div class="ultimate-section">
-            <h2>The Ultimate Gaming Tool</h2>
-            <p>Dominate your game with the ultimate tool for competitive players. Gain an unfair advantage with precision aim, unparalleled awareness, and advanced movement capabilities that will leave your opponents in awe. This is your key to victory.</p>
-        </div>
-
-        <!-- Detailed Feature Blocks -->
-        <div class="detail-block">
-            <h3>Aimbot</h3>
-            <p class="block-desc">Lock onto targets with lethal accuracy. Our aimbot gives you the edge to hit every shot.</p>
-            <ul class="feature-list">
-                <li>Bone Selection</li>
-                <li>Adjustable FOV</li>
-                <li>Recoil Control</li>
-                <li>Silent Aim</li>
-                <li>Smoothing</li>
-                <li>Thick Bullet</li>
-                <li>Instant Eoka</li>
-                <li>Full Auto</li>
-                <li>Spread Control</li>
-                <li>Hit Chance</li>
-            </ul>
-        </div>
-
-        <div class="detail-block">
-            <h3>ESP & Wallhack Features</h3>
-            <p class="block-desc">Transform your perception of the game with our state-of-the-art ESP. Track enemy movements, identify critical loot, and anticipate every threat.</p>
-            <ul class="feature-list">
-                <li>Player NameTag</li>
-                <li>Box (Corner)</li>
-                <li>Skeleton</li>
-                <li>Team ID</li>
-                <li>Distance</li>
-                <li>Show Dead</li>
-                <li>Show Sleepers</li>
-                <li>Radar</li>
-                <li>Hotbar ESP</li>
-                <li>Chams</li>
-            </ul>
-        </div>
-
-        <div class="detail-block">
-            <h3>Loot ESP</h3>
-            <p class="block-desc">Stop wasting precious time searching aimlessly for loot. Our Loot ESP highlights exactly what you need.</p>
-            <ul class="feature-list">
-                <li>Ore ESP</li>
-                <li>Collectable ESP</li>
-                <li>Vehicle ESP</li>
-                <li>Lootable ESP</li>
-                <li>Trap ESP</li>
-                <li>Deployable Esp</li>
-            </ul>
+            <!-- Tab: Compatibility -->
+            <div class="tab-content" id="tab-compatibility">
+                <div class="compat-grid">
+                    <div class="compat-item">
+                        <div class="compat-icon">🖥️</div>
+                        <h4>Operating System</h4>
+                        <p>Windows 10/11 (64-bit)</p>
+                    </div>
+                    <div class="compat-item">
+                        <div class="compat-icon">🎮</div>
+                        <h4>Game Version</h4>
+                        <p>Latest Steam Build</p>
+                    </div>
+                    <div class="compat-item">
+                        <div class="compat-icon">🛡️</div>
+                        <h4>Anti-Cheat</h4>
+                        <p>EAC Bypass Active</p>
+                    </div>
+                    <div class="compat-item">
+                        <div class="compat-icon">⚙️</div>
+                        <h4>CPU</h4>
+                        <p>Intel & AMD Supported</p>
+                    </div>
+                    <div class="compat-item">
+                        <div class="compat-icon">🔧</div>
+                        <h4>GPU</h4>
+                        <p>NVIDIA & AMD</p>
+                    </div>
+                    <div class="compat-item">
+                        <div class="compat-icon">📋</div>
+                        <h4>Last Updated</h4>
+                        <p>June 2026</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Steam Badge -->
@@ -198,6 +313,9 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top-btn" id="scrollTopBtn">↑</button>
 
     <script src="script.js"></script>
 </body>

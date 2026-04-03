@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status - Vandal Store</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icon/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="images/icon/favicon.ico">
+    <link rel="manifest" href="images/icon/site.webmanifest">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <img src="images/logo.png" alt="Loading" class="loading-logo">
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Cursor Trail -->
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="blood-flow-1"></div>
+        <div class="blood-flow-2"></div>
+        <div class="blood-flow-3"></div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Your Cart</h3>
+            <button class="cart-close" id="cartClose">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">Your cart is empty</div>
+        </div>
+        <div class="cart-promo">
+            <div class="promo-input-group">
+                <input type="text" placeholder="Promo code" id="promoInput" maxlength="20">
+                <button id="promoApply">Apply</button>
+            </div>
+            <div class="promo-msg" id="promoMsg"></div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">€0.00</span>
+            </div>
+            <button class="cart-checkout-btn" id="checkoutBtn">Checkout with Sellix</button>
+            <button class="cart-crypto-btn" id="cryptoBtn">₿ Pay with Crypto</button>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="images/logo.png" alt="Vandal Store" class="logo-img">
+                <span class="logo-text">Vandal Store</span>
+            </a>
+            <div class="navbar-links">
+                <a href="index.html" class="nav-link">Products</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="status.html" class="nav-link active">Status</a>
+            </div>
+            <div class="navbar-right">
+                <button class="cart-btn" id="cartBtn">
+                    🛒
+                    <span class="cart-badge empty" id="cartBadge">0</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <div class="navbar-buttons">
+                    <button class="btn-login">Login</button>
+                    <button class="btn-signup">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Status Page -->
+    <div class="product-page page-transition">
+        <a href="index.html" class="back-btn">← Back to Products</a>
+
+        <div class="product-page-header">
+            <h1>Product Status</h1>
+            <span class="status-badge">Live Monitoring</span>
+        </div>
+
+        <!-- Overall Status -->
+        <div class="status-overview">
+            <div class="status-overall-card">
+                <div class="status-indicator online"></div>
+                <div>
+                    <h3>All Systems Operational</h3>
+                    <p>Last checked: <span id="lastChecked">Just now</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Status Cards -->
+        <div class="status-grid">
+            <div class="status-card">
+                <div class="status-card-header">
+                    <h3>Rust</h3>
+                    <span class="status-pill online">Undetected</span>
+                </div>
+                <div class="status-details">
+                    <div class="status-row">
+                        <span>Detection Status</span>
+                        <span class="status-value online">✓ Undetected</span>
+                    </div>
+                    <div class="status-row">
+                        <span>Uptime</span>
+                        <span class="status-value">99.8%</span>
+                    </div>
+                    <div class="status-row">
+                        <span>Last Update</span>
+                        <span class="status-value">June 2026</span>
+                    </div>
+                    <div class="status-row">
+                        <span>Anti-Cheat</span>
+                        <span class="status-value">EAC Bypass</span>
+                    </div>
+                </div>
+                <div class="status-uptime-bar">
+                    <div class="uptime-bar-fill" style="width: 99.8%"></div>
+                </div>
+            </div>
+
+            <div class="status-card">
+                <div class="status-card-header">
+                    <h3>Arc Raiders</h3>
+                    <span class="status-pill online">Undetected</span>
+                </div>
+                <div class="status-details">
+                    <div class="status-row">
+                        <span>Detection Status</span>
+                        <span class="status-value online">✓ Undetected</span>
+                    </div>
+                    <div class="status-row">
+                        <span>Uptime</span>
+                        <span class="status-value">99.5%</span>
+                    </div>
+                    <div class="status-row">
+                        <span>Last Update</span>
+                        <span class="status-value">June 2026</span>
+                    </div>
+                    <div class="status-row">
+                        <span>Anti-Cheat</span>
+                        <span class="status-value">EAC Bypass</span>
+                    </div>
+                </div>
+                <div class="status-uptime-bar">
+                    <div class="uptime-bar-fill" style="width: 99.5%"></div>
+                </div>
+            </div>
+
+            <div class="status-card">
+                <div class="status-card-header">
+                    <h3>Discord Services</h3>
+                    <span class="status-pill online">Online</span>
+                </div>
+                <div class="status-details">
+                    <div class="status-row">
+                        <span>Service Status</span>
+                        <span class="status-value online">✓ Active</span>
+                    </div>
+                    <div class="status-row">
+                        <span>Uptime</span>
+                        <span class="status-value">100%</span>
+                    </div>
+                    <div class="status-row">
+                        <span>Delivery Speed</span>
+                        <span class="status-value">Instant</span>
+                    </div>
+                    <div class="status-row">
+                        <span>Queue</span>
+                        <span class="status-value">0 orders</span>
+                    </div>
+                </div>
+                <div class="status-uptime-bar">
+                    <div class="uptime-bar-fill" style="width: 100%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Incident History -->
+        <div class="service-info" style="margin-top: 3rem;">
+            <h3>Recent Incidents</h3>
+            <div class="incident-list">
+                <div class="incident-item">
+                    <div class="incident-date">June 15, 2026</div>
+                    <div class="incident-desc">
+                        <strong>Scheduled Maintenance</strong> — Server maintenance completed. All products updated to latest versions.
+                        <span class="incident-status resolved">Resolved</span>
+                    </div>
+                </div>
+                <div class="incident-item">
+                    <div class="incident-date">June 8, 2026</div>
+                    <div class="incident-desc">
+                        <strong>Rust Update</strong> — Rust game update detected. Product updated within 2 hours.
+                        <span class="incident-status resolved">Resolved</span>
+                    </div>
+                </div>
+                <div class="incident-item">
+                    <div class="incident-date">May 28, 2026</div>
+                    <div class="incident-desc">
+                        <strong>No incidents reported</strong> — All systems operational for the past 30 days.
+                        <span class="incident-status resolved">All Clear</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Vandal Store. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top-btn" id="scrollTopBtn">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord Services - Vandal Store</title>
+    <title>Dashboard - Vandal Store</title>
     <link rel="apple-touch-icon" sizes="180x180" href="images/icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/icon/favicon-16x16.png">
@@ -85,67 +85,79 @@
         </div>
     </nav>
 
-    <!-- Product Page -->
+    <!-- Dashboard Page -->
     <div class="product-page page-transition">
         <a href="index.html" class="back-btn">← Back to Products</a>
 
-        <!-- Header -->
         <div class="product-page-header">
-            <h1>Discord Services</h1>
-            <span class="status-badge">Server Boosting</span>
+            <h1>User Dashboard</h1>
+            <span class="status-badge">Manage Your Keys</span>
         </div>
 
-        <!-- Pricing -->
-        <div class="pricing-grid" style="max-width: 600px; margin-left: auto; margin-right: auto;">
-            <div class="price-card highlighted">
-                <span class="price-badge popular">Most Popular</span>
-                <div class="duration">1k Online Members</div>
-                <div class="price">€7.00</div>
-                <button class="btn-buy" data-product="Discord Online Members" data-duration="1k Members" data-price="7.00">Add to Cart</button>
+        <!-- Dashboard Login -->
+        <div class="dashboard-login" id="dashboardLogin">
+            <div class="service-info" style="max-width: 500px; margin: 0 auto; text-align: center;">
+                <h3>Sign In to Your Account</h3>
+                <p>Enter your email to access your purchased keys and order history.</p>
+                <div style="margin-top: 1.5rem;">
+                    <div class="promo-input-group" style="flex-direction: column; gap: 1rem;">
+                        <input type="email" placeholder="Email address" id="dashEmail" style="padding: 0.9rem 1.2rem; background: rgba(0,0,0,0.5); border: 1.5px solid rgba(179,0,0,0.3); border-radius: 8px; color: var(--text-primary); font-size: 1rem; font-family: 'Inter', sans-serif; outline: none; width: 100%; transition: var(--transition);">
+                        <button id="dashLoginBtn" style="padding: 0.9rem; background: linear-gradient(135deg, var(--blood-red-dark), var(--blood-red)); border: none; border-radius: 8px; color: #000; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); box-shadow: 0 0 20px rgba(179,0,0,0.5);">Access Dashboard</button>
+                    </div>
+                    <p id="dashMsg" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);"></p>
+                </div>
             </div>
-            <div class="price-card highlighted">
-                <span class="price-badge best-value">Best Value</span>
-                <div class="duration">1k Offline Members</div>
-                <div class="price">€3.00</div>
-                <button class="btn-buy" data-product="Discord Offline Members" data-duration="1k Members" data-price="3.00">Add to Cart</button>
+        </div>
+
+        <!-- Dashboard Content (hidden until login) -->
+        <div class="dashboard-content" id="dashboardContent" style="display: none;">
+            <!-- Stats Row -->
+            <div class="compat-grid" style="margin-bottom: 2rem;">
+                <div class="compat-item">
+                    <div class="compat-icon">🔑</div>
+                    <h4>Active Keys</h4>
+                    <p id="statKeys">0</p>
+                </div>
+                <div class="compat-item">
+                    <div class="compat-icon">📦</div>
+                    <h4>Total Orders</h4>
+                    <p id="statOrders">0</p>
+                </div>
+                <div class="compat-item">
+                    <div class="compat-icon">💰</div>
+                    <h4>Total Spent</h4>
+                    <p id="statSpent">€0.00</p>
+                </div>
             </div>
-        </div>
 
-        <!-- Service Description -->
-        <div class="service-info">
-            <h3>What Is Discord Server Boosting?</h3>
-            <p>Discord server boosting is a service that increases the member count of your Discord server, making it appear more active, popular, and credible. Whether you're building a community, running a brand, or launching a project, a higher member count attracts more organic users and boosts your server's visibility.</p>
-        </div>
+            <!-- Active Keys -->
+            <div class="service-info">
+                <h3>Your Active Keys</h3>
+                <div id="keysList">
+                    <p style="color: var(--text-secondary); text-align: center; padding: 2rem;">No active keys found. Purchase a product to get started.</p>
+                </div>
+            </div>
 
-        <div class="service-info">
-            <h3>Online Members vs Offline Members</h3>
-            <p>We offer two types of member packages to fit your needs:</p>
-            <ul>
-                <li><strong>Online Members (€7 per 1,000):</strong> These members appear as "online" in your server's member list. They show a green status indicator, making your server look actively populated at all times. This is ideal for servers that want to appear busy and thriving, as potential new members will see a large number of active users when they join.</li>
-                <li><strong>Offline Members (€3 per 1,000):</strong> These members are added to your server but appear as "offline." They boost your total member count displayed on your server, which increases credibility and social proof. This is a cost-effective way to inflate your server's numbers and make it look established and trusted.</li>
-            </ul>
-        </div>
+            <!-- Order History -->
+            <div class="service-info">
+                <h3>Order History</h3>
+                <div id="orderHistory">
+                    <p style="color: var(--text-secondary); text-align: center; padding: 2rem;">No orders found.</p>
+                </div>
+            </div>
 
-        <div class="service-info">
-            <h3>Benefits of Server Boosting</h3>
-            <ul>
-                <li><strong>Increased Credibility:</strong> A higher member count signals trust and popularity.</li>
-                <li><strong>Attract Organic Growth:</strong> People are more likely to join and stay in servers that already have a large community.</li>
-                <li><strong>Brand Visibility:</strong> Stand out in server directories and search results.</li>
-                <li><strong>Social Proof:</strong> A busy server looks professional and well-maintained.</li>
-                <li><strong>Quick Setup:</strong> Members are delivered quickly after purchase.</li>
-                <li><strong>Scalable:</strong> Order as many as you need to match your goals.</li>
-            </ul>
-        </div>
-
-        <div class="service-info">
-            <h3>How It Works</h3>
-            <ul>
-                <li>Select your desired package (Online or Offline members).</li>
-                <li>Provide your Discord server invite link after purchase.</li>
-                <li>Members will begin joining your server shortly after confirmation.</li>
-                <li>Sit back and watch your community grow.</li>
-            </ul>
+            <!-- Email Notifications -->
+            <div class="service-info">
+                <h3>Email Notifications</h3>
+                <p>Get notified about order confirmations, key delivery, and important updates.</p>
+                <div style="margin-top: 1.5rem;">
+                    <div class="promo-input-group">
+                        <input type="email" placeholder="Your email" id="notifEmail" style="flex: 1; padding: 0.7rem 1rem; background: rgba(0,0,0,0.5); border: 1.5px solid rgba(179,0,0,0.3); border-radius: 8px; color: var(--text-primary); font-size: 0.9rem; font-family: 'Inter', sans-serif; outline: none; transition: var(--transition);">
+                        <button id="notifBtn">Subscribe</button>
+                    </div>
+                    <p id="notifMsg" style="margin-top: 0.5rem; font-size: 0.8rem;"></p>
+                </div>
+            </div>
         </div>
     </div>
 

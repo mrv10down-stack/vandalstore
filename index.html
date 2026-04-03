@@ -12,11 +12,51 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <img src="images/logo.png" alt="Loading" class="loading-logo">
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Cursor Trail -->
+    <div class="cursor-dot" id="cursorDot"></div>
+
     <!-- Animated Background -->
     <div class="animated-background">
         <div class="blood-flow-1"></div>
         <div class="blood-flow-2"></div>
         <div class="blood-flow-3"></div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Your Cart</h3>
+            <button class="cart-close" id="cartClose">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">Your cart is empty</div>
+        </div>
+        <div class="cart-promo">
+            <div class="promo-input-group">
+                <input type="text" placeholder="Promo code" id="promoInput" maxlength="20">
+                <button id="promoApply">Apply</button>
+            </div>
+            <div class="promo-msg" id="promoMsg"></div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">€0.00</span>
+            </div>
+            <button class="cart-checkout-btn" id="checkoutBtn">Checkout with Sellix</button>
+            <button class="cart-crypto-btn" id="cryptoBtn">₿ Pay with Crypto</button>
+        </div>
     </div>
 
     <!-- Navigation Bar -->
@@ -26,9 +66,21 @@
                 <img src="images/logo.png" alt="Vandal Store" class="logo-img">
                 <span class="logo-text">Vandal Store</span>
             </a>
-            <div class="navbar-buttons">
-                <button class="btn-login">Login</button>
-                <button class="btn-signup">Sign Up</button>
+            <div class="navbar-links">
+                <a href="index.html" class="nav-link active">Products</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="status.html" class="nav-link">Status</a>
+            </div>
+            <div class="navbar-right">
+                <button class="cart-btn" id="cartBtn">
+                    🛒
+                    <span class="cart-badge empty" id="cartBadge">0</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <div class="navbar-buttons">
+                    <button class="btn-login">Login</button>
+                    <button class="btn-signup">Sign Up</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -155,6 +207,9 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top-btn" id="scrollTopBtn">↑</button>
 
     <script src="script.js"></script>
 </body>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Vandal Store</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/icon/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="images/icon/favicon.ico">
+    <link rel="manifest" href="images/icon/site.webmanifest">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <img src="images/logo.png" alt="Loading" class="loading-logo">
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Cursor Trail -->
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="blood-flow-1"></div>
+        <div class="blood-flow-2"></div>
+        <div class="blood-flow-3"></div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Your Cart</h3>
+            <button class="cart-close" id="cartClose">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">Your cart is empty</div>
+        </div>
+        <div class="cart-promo">
+            <div class="promo-input-group">
+                <input type="text" placeholder="Promo code" id="promoInput" maxlength="20">
+                <button id="promoApply">Apply</button>
+            </div>
+            <div class="promo-msg" id="promoMsg"></div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">€0.00</span>
+            </div>
+            <button class="cart-checkout-btn" id="checkoutBtn">Checkout with Sellix</button>
+            <button class="cart-crypto-btn" id="cryptoBtn">₿ Pay with Crypto</button>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="images/logo.png" alt="Vandal Store" class="logo-img">
+                <span class="logo-text">Vandal Store</span>
+            </a>
+            <div class="navbar-links">
+                <a href="index.html" class="nav-link">Products</a>
+                <a href="faq.html" class="nav-link active">FAQ</a>
+                <a href="status.html" class="nav-link">Status</a>
+            </div>
+            <div class="navbar-right">
+                <button class="cart-btn" id="cartBtn">
+                    🛒
+                    <span class="cart-badge empty" id="cartBadge">0</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <div class="navbar-buttons">
+                    <button class="btn-login">Login</button>
+                    <button class="btn-signup">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FAQ Page -->
+    <div class="product-page page-transition">
+        <a href="index.html" class="back-btn">← Back to Products</a>
+
+        <div class="product-page-header">
+            <h1>FAQ & Knowledge Base</h1>
+            <span class="status-badge">Help Center</span>
+        </div>
+
+        <!-- FAQ Items -->
+        <div class="faq-section">
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How do I receive my product after purchase?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>After completing your purchase, your product key will be delivered instantly to the email address you provided during checkout. You can also access your keys from the dashboard if you have an account.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is this undetected?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes. All of our products are thoroughly tested and maintained to remain undetected. We continuously update our software to stay ahead of anti-cheat systems. Check the Status page for real-time detection status.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What payment methods do you accept?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>We accept payments through Sellix, which supports credit/debit cards, PayPal, and various cryptocurrency options including Bitcoin, Ethereum, and Litecoin.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What operating systems are supported?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Our products currently support Windows 10 and Windows 11 (64-bit only). macOS and Linux are not supported at this time.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Do you offer refunds?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Due to the digital nature of our products, we generally do not offer refunds once a key has been delivered. However, if you experience technical issues that prevent the product from working as described, please contact our support team for assistance.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How do I install and use the product?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>After receiving your key, you'll get a download link and step-by-step instructions. Simply download the loader, enter your key, and follow the on-screen setup. Our support team is available 24/7 if you need help.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Can I use promo codes?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes! We regularly offer promotional discounts. Enter your promo code in the cart sidebar before checkout. Follow our Discord for the latest deals and exclusive codes.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What happens when my subscription expires?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>When your subscription period ends, the product will simply stop working. You can renew at any time by purchasing a new key. No data is stored on your system after expiry.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How do I contact support?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>You can reach our support team through our Discord server. We offer 24/7 support with typical response times under 30 minutes. For urgent issues, open a ticket in the #support channel.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Vandal Store. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top-btn" id="scrollTopBtn">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
